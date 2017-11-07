@@ -1,0 +1,10 @@
+/*.stash
+/.vs/CoffeDiary/v15/*.db
+/.vs/CoffeDiary/v15/*.opendb
+/*.filters
+/*.user
+/GeneratedFiles
+/debug
+/release
+/x64/Debug
+/.vs/CoffeDiary/v15
