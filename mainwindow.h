@@ -22,6 +22,12 @@ private slots:
 
     void on_pbSendMail_clicked();
 
+    void on_cbCoffeMethods_currentIndexChanged(int index);
+
+    void on_rbPlanNewCoffe_clicked();
+
+    void on_rbRecordnewCoffe_clicked();
+
 private:
     CoffeDiary _coffeDiary;
     Ui::MainWindow *ui;

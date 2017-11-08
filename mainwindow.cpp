@@ -14,7 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->cbCoffeMethods->addItem(foo->GetName());
     }
+    ui->cbCoffeMethods->setCurrentIndex(-1);
     SendStartBtnsVisibility(false);
+    ui->pbBegin->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -86,4 +88,28 @@ void MainWindow::on_pbSendMail_clicked()
             .arg(QDateTime::currentDateTime().toString(Qt::SystemLocaleLongDate))
             .arg(_coffeDiary.GetAvailableCoffeMethods().at(ui->cbCoffeMethods->currentIndex())->GetMailBody());
     QDesktopServices::openUrl(QUrl(content, QUrl::TolerantMode));
+}
+
+void MainWindow::on_cbCoffeMethods_currentIndexChanged(int index)
+{
+    if (index > -1)
+    {
+        ui->rbPlanNewCoffe->setEnabled(true);
+        ui->rbRecordnewCoffe->setEnabled(true);
+    }
+    else
+    {
+        ui->rbPlanNewCoffe->setEnabled(false);
+        ui->rbRecordnewCoffe->setEnabled(false);
+    }
+}
+
+void MainWindow::on_rbPlanNewCoffe_clicked()
+{
+    ui->pbBegin->setEnabled(true);
+}
+
+void MainWindow::on_rbRecordnewCoffe_clicked()
+{
+    ui->pbBegin->setEnabled(true);
 }
