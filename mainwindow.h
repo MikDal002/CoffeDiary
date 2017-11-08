@@ -26,6 +26,7 @@ private:
     CoffeDiary _coffeDiary;
     Ui::MainWindow *ui;
     void SendStartBtnsVisibility(bool isVisible);
+    void setDescriptionString(void);
 };
 
 #endif // MAINWINDOW_H
