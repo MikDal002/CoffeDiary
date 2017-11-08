@@ -1,3 +1,4 @@
+#include <QDebug>
 #include "CoffeeParamSelector.h"
 #include "ui_CoffeeParamSelector.h"
 
@@ -21,29 +22,38 @@ CoffeeParamSelector::CoffeeParamSelector(QWidget *parent, ICoffeeParam * param) 
     switch (param->GetParamType())
     {
     case ParamType::BOOLEAN:
-        ui->hzBoolean->setVisible(true);
-        ui->hsBoolean->setValue(false);
+        ui->hsBoolean->setValue(true);
+        ui->hsBoolean->setValue(false); // potrzeba dwa razy aby dobrze ustawiła się wartość QLabel
+        _activeWidget = ui->hzBoolean;
         break;
     case ParamType::DESCRITPION:
         ui->leDesc->setText(param->GetValue().toString());
-        ui->leDesc->setVisible(true);
+        _activeWidget = ui->leDesc;
         break;
     case ParamType::SHORTANSW:
         ui->leDesc->setText(param->GetValue().toString());
-        ui->leDesc->setVisible(true);
+        _activeWidget = ui->leDesc;
         break;
     case ParamType::TEMPERATURE:
-        ui->dsbTemperature->setVisible(true);
+        _activeWidget = ui->dsbTemperature;
         break;
     case ParamType::TIME:
-        ui->hzTime->setVisible(true);
+        _activeWidget = ui->hzTime;
         break;
     case ParamType::WEIGHT:
-        ui->dsbWeight->setVisible(true);
+        _activeWidget = ui->dsbWeight;
         break;
     default:
-        break;
+        return;
     }
+    _activeWidget->setVisible(true);
+    // zapamiętaj, że wartość jeszcze nie została zmieniona:
+    _valueChanged = false;
+}
+
+bool CoffeeParamSelector::ValueWasSet()
+{
+    return _valueChanged;
 }
 
 CoffeeParamSelector::~CoffeeParamSelector()
@@ -59,6 +69,7 @@ void CoffeeParamSelector::on_hsBoolean_valueChanged(int value)
         ui->lbSlider->setText("NIE");
 
     _value->SetValue(value);
+    _valueChanged = true;
 }
 
 void CoffeeParamSelector::on_hsBoolean_sliderPressed()
@@ -69,19 +80,23 @@ void CoffeeParamSelector::on_hsBoolean_sliderPressed()
 void CoffeeParamSelector::on_leDesc_textChanged(const QString &arg1)
 {
     _value->SetValue(arg1);
+    _valueChanged = true;
 }
 
 void CoffeeParamSelector::on_dsbWeight_valueChanged(double arg1)
 {
     _value->SetValue(arg1);
+    _valueChanged = true;
 }
 
 void CoffeeParamSelector::on_dsbTemperature_valueChanged(double arg1)
 {
     _value->SetValue(arg1);
+    _valueChanged = true;
 }
 
 void CoffeeParamSelector::on_teTime_timeChanged(const QTime &time)
 {
     _value->SetValue(time);
+    _valueChanged = true;
 }
