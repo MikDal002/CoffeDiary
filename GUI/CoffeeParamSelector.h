@@ -13,9 +13,12 @@ class CoffeeParamSelector : public QWidget
 
 public:
     explicit CoffeeParamSelector(QWidget *parent = 0, ICoffeeParam * param = 0);
+    bool ValueWasSet();
     ~CoffeeParamSelector();
 private:
     ICoffeeParam * _value;
+    bool _valueChanged;
+    QWidget * _activeWidget;
 private slots:
     void on_hsBoolean_valueChanged(int value);
 
