@@ -22,14 +22,3 @@ QList<ICoffeeParam *> PressureMethod::GetParams()
 
     return retVal;
 }
-
-//QString PressureMethod::GetMailBody()
-//{
-//    QString retVal = "Parzenie metodą ciśnieniową: \r\n";
-//    foreach (auto foo, GetParams())
-//    {
-//        retVal += foo->GetParamName() + ": " + foo->ToString() + "\r\n";
-//    }
-
-//    return retVal;
-//}

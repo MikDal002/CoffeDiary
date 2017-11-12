@@ -9,7 +9,7 @@ public:
     PressureMethod();
     QString GetName() override;
     QList<ICoffeeParam *> GetParams() override;
-    //QString GetMailBody() override;
+	QList<ICoffeeParam *> GetParamsForRecording() override;
 
 private:
     DescParam       _deviceName = DescParam("Nazwa urządzenia");
