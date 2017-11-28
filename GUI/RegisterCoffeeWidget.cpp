@@ -88,10 +88,19 @@ bool RegisterCoffeeWidget::renderParam(uint32_t no)
 void RegisterCoffeeWidget::on_pbNext_clicked()
 {
 	_currentTimeParam = nullptr;
-	if (_paramsDone < _paramsTodo) renderParam(_paramsDone++);
+	if (_paramsDone < _paramsTodo)
+	{
+		ui->pbNext->setText("Dalej");
+		renderParam(_paramsDone++);
+	}
+	else if (_paramsDone == _paramsTodo)
+	{
+		ui->pbNext->setText("Zakoñcz");
+		_paramsDone++;
+	}
 	else
 	{
-		// Parzenie dobieg³o koñca.
+		this->close(); // Tutaj powinno byæ coœ w stylu wys³ania wiadomoœci mailem.
 	}
 	ui->progressBar->setValue(_paramsDone);
 }
