@@ -11,6 +11,9 @@ CoffeeParamSelector::CoffeeParamSelector(QWidget *parent, ICoffeeParam * param) 
 
     _value = param;
 
+	ui->hsBoolean->setValue(true);
+	ui->hsBoolean->setValue(false); // potrzeba dwa razy aby dobrze ustawiła się wartość QLabel
+
     ui->lbTitle->setText(param->GetParamName());
     for (int i = 0; i < ui->vlParams->count(); ++i)
     {
@@ -48,7 +51,6 @@ void CoffeeParamSelector::Update()
 	{
 	case ParamType::BOOLEAN:
 		ui->hsBoolean->setValue(_value->GetValue().toInt());
-		//ui->hsBoolean->setValue(false); // potrzeba dwa razy aby dobrze ustawiła się wartość QLabel
 		_activeWidget = ui->hzBoolean;
 		break;
 	case ParamType::DESCRITPION:
@@ -64,11 +66,9 @@ void CoffeeParamSelector::Update()
 		_activeWidget = ui->dsbTemperature;
 		break;
 	case ParamType::TIME:
-	{
 		ui->teTime->setTime(_value->GetValue().toTime());
 		_activeWidget = ui->hzTime;
 		break;
-	}
 	case ParamType::WEIGHT:
 		ui->dsbWeight->setValue(_value->GetValue().toDouble());
 		_activeWidget = ui->dsbWeight;
