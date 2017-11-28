@@ -34,10 +34,10 @@ QList<ICoffeeParam*> GravitationMethod::GetParamsForRecording()
 	retVal.append(&_coffeWeight);
 	retVal.append(&_cleaned);
 	retVal.append(&_waterTemp);
-	retVal.append(&_mixed);
 	retVal.append(&_preinfusionTime);
-	retVal.append(&_preinfusionWaterAmount);
 	retVal.append(&_totalTime);
+	retVal.append(&_mixed);
+	retVal.append(&_preinfusionWaterAmount);
 	retVal.append(&_waterAmount);
 	retVal.append(&_desc);
 	return  retVal;

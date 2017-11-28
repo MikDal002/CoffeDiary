@@ -12,8 +12,8 @@ enum class ParamType
 };
 class ICoffeeParam
 {
-public:
 
+public:
 
     virtual ParamType GetParamType() = 0;
     virtual QString ToString();
@@ -26,6 +26,9 @@ public:
 
     virtual QString GetUnit();
     virtual void SetUnit(QString unit);
+
+public:
+	std::function<void()> OnValueChanged;
 
 protected:
     ICoffeeParam(QString name, QString unit);

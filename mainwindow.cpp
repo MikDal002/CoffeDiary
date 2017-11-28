@@ -4,6 +4,7 @@
 #include <GUI/CoffeeParamSelector.h>
 #include <QDateTime>
 #include <QDesktopServices>
+#include "RegisterCoffeeWidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -48,11 +49,19 @@ void MainWindow::on_pbBegin_clicked()
     int row = 0;
     ICoffeeMethod * method = _coffeDiary.GetAvailableCoffeMethods().at(selected);
 
-    foreach (ICoffeeParam * foo, method->GetParams())
-    {
-        ui->PropertiesLayout->addWidget(new CoffeeParamSelector(this, foo), row/2, row%2);
-        row += 1;
-    }
+	if (ui->rbRecordnewCoffe->isChecked())
+	{
+		ui->PropertiesLayout->addWidget(new RegisterCoffeeWidget(this, method));
+	}
+	else
+	{
+		foreach (ICoffeeParam * foo, method->GetParams())
+		{
+			ui->PropertiesLayout->addWidget(new CoffeeParamSelector(this, foo), row/2, row%2);
+			row += 1;
+		}
+	}
+
     setDescriptionString();
     SendStartBtnsVisibility(true);
 }

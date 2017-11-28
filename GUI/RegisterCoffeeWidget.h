@@ -1,7 +1,10 @@
 #pragma once
 
 #include <QWidget>
+#include <qdatetime.h>
+#include <qtimer.h>
 #include "../Core/ICoffeeMethod.h"
+#include "../Core/CoffeeParams/TimeParam.h"
 namespace Ui {
 	class RegisterCoffeeWidget;
 }
@@ -15,8 +18,12 @@ public:
 
 private slots:
     void on_pbNext_clicked();
+	void timerTimeout();
 
 private:
+	TimeParam * _currentTimeParam;
+	QTimer _timer;
+	QDateTime _startTime;
 	Ui::RegisterCoffeeWidget *ui;
 	ICoffeeMethod *_method;
 	uint32_t _paramsTodo = 0;

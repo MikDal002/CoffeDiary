@@ -8,6 +8,7 @@ public:
     ParamType GetParamType() override;
     TimeParam(QString name, QString unit = "mm:ss");
     QString ToString() override;
+	void SetValue(QVariant value) override;
 };
 
 #endif // TIMEPARAM_H

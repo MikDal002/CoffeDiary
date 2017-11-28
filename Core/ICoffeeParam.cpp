@@ -8,11 +8,11 @@ QVariant ICoffeeParam::GetValue()
 
 void ICoffeeParam::SetValue(QVariant value)
 {
-    qDebug() << "Zmieniono wartośc Coffepara na: " << value.toString();
     if (value == _value)
         return;
-
+	qDebug() << "Nowa wartość: " << value;
     _value = value;
+	if(OnValueChanged) OnValueChanged();
 }
 
 QString ICoffeeParam::GetUnit()

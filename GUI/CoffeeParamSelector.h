@@ -15,6 +15,8 @@ public:
     explicit CoffeeParamSelector(QWidget *parent = 0, ICoffeeParam * param = 0);
     bool ValueWasSet();
     ~CoffeeParamSelector();
+	static void onSourceValueChanged(CoffeeParamSelector * selector);
+	void Update();
 private:
     ICoffeeParam * _value;
     bool _valueChanged;
