@@ -43,6 +43,7 @@ void CoffeeParamSelector::onSourceValueChanged(CoffeeParamSelector * selector)
 }
 void CoffeeParamSelector::Update()
 {
+	
 	switch (_value->GetParamType())
 	{
 	case ParamType::BOOLEAN:
@@ -64,8 +65,6 @@ void CoffeeParamSelector::Update()
 		break;
 	case ParamType::TIME:
 	{
-		qDebug() << "Wartosc czasu: " << _value->GetValue().toTime();
-		
 		ui->teTime->setTime(_value->GetValue().toTime());
 		_activeWidget = ui->hzTime;
 		break;

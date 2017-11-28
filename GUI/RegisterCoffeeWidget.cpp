@@ -21,7 +21,7 @@ RegisterCoffeeWidget::~RegisterCoffeeWidget()
 }
 void RegisterCoffeeWidget::timerTimeout()
 {
-	if (_currentTimeParam == 0) return;
+	if (_currentTimeParam == nullptr) return;
 
 	_currentTimeParam->SetValue(_startTime.secsTo(QDateTime::currentDateTime()));
 
@@ -69,10 +69,17 @@ bool RegisterCoffeeWidget::renderParam(uint32_t no)
 		if (!_timer.isActive())
 		{
 			_startTime = QDateTime::currentDateTime();
-			_currentTimeParam = (TimeParam *)param;
 			_timer.start(1000);
 		}
+		if (_currentTimeParam == nullptr)
+		{
+			_currentTimeParam = (TimeParam *)param;
+		}
 
+	}
+	else
+	{
+		_timer.stop();
 	}
 
 	return true;
@@ -80,6 +87,7 @@ bool RegisterCoffeeWidget::renderParam(uint32_t no)
 
 void RegisterCoffeeWidget::on_pbNext_clicked()
 {
+	_currentTimeParam = nullptr;
 	if (_paramsDone < _paramsTodo) renderParam(_paramsDone++);
 	else
 	{
