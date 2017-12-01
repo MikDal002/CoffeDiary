@@ -3,6 +3,7 @@
 
 #include <GUI/CoffeeParamSelector.h>
 #include <QDateTime>
+#include <QDebug>
 #include <QDesktopServices>
 #include "RegisterCoffeeWidget.h"
 
@@ -46,24 +47,36 @@ void MainWindow::on_pbBegin_clicked()
         delete child;
     }
 
-    int row = 0;
+    
     ICoffeeMethod * method = _coffeDiary.GetAvailableCoffeMethods().at(selected);
 
 	if (ui->rbRecordnewCoffe->isChecked())
 	{
-		ui->PropertiesLayout->addWidget(new RegisterCoffeeWidget(this, method));
+		RegisterCoffeeWidget * foo = new RegisterCoffeeWidget(this, method);
+		foo->OnRegisteringEnd = std::bind(&MainWindow::DisplayCurrentCoffeeParams, this);
+		ui->PropertiesLayout->addWidget(foo);
 	}
 	else
 	{
-		foreach (ICoffeeParam * foo, method->GetParams())
-		{
-			ui->PropertiesLayout->addWidget(new CoffeeParamSelector(this, foo), row/2, row%2);
-			row += 1;
-		}
+		DisplayAllCoffeeParams(method);
 	}
 
     setDescriptionString();
     SendStartBtnsVisibility(true);
+}
+void MainWindow::DisplayCurrentCoffeeParams()
+{
+	DisplayAllCoffeeParams(_coffeDiary.GetAvailableCoffeMethods().at(ui->cbCoffeMethods->currentIndex()));
+}
+void MainWindow::DisplayAllCoffeeParams(ICoffeeMethod * method)
+{
+	int row = 0;
+	foreach(ICoffeeParam * foo, method->GetParams())
+	{
+		ui->PropertiesLayout->addWidget(new CoffeeParamSelector(this, foo), row / 2, row % 2);
+		row += 1;
+	}
+
 }
 
 void MainWindow::SendStartBtnsVisibility(bool isVisible)
@@ -121,4 +134,9 @@ void MainWindow::on_rbPlanNewCoffe_clicked()
 void MainWindow::on_rbRecordnewCoffe_clicked()
 {
     ui->pbBegin->setEnabled(true);
+}
+
+void MainWindow::CoffeeRegisteringEnd()
+{
+	qDebug() << "Koniec :P";
 }

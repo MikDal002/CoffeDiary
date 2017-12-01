@@ -10,7 +10,7 @@ void ICoffeeParam::SetValue(QVariant value)
 {
     if (value == _value)
         return;
-	qDebug() << "Nowa wartość: " << value;
+	qDebug() << "Nowa wartość: " << value << " stara wartosc " << _value;
     _value = value;
 	if(OnValueChanged) OnValueChanged();
 }

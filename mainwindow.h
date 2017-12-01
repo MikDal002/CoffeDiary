@@ -16,7 +16,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+	void DisplayAllCoffeeParams(ICoffeeMethod * method);
+	void DisplayCurrentCoffeeParams(void);
 private slots:
     void on_pbBegin_clicked();
 
@@ -27,6 +28,7 @@ private slots:
     void on_rbPlanNewCoffe_clicked();
 
     void on_rbRecordnewCoffe_clicked();
+	void CoffeeRegisteringEnd();
 
 private:
     CoffeDiary _coffeDiary;

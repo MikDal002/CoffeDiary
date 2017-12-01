@@ -26,6 +26,13 @@ void RegisterCoffeeWidget::timerTimeout()
 	_currentTimeParam->SetValue(_startTime.secsTo(QDateTime::currentDateTime()));
 
 }
+void RegisterCoffeeWidget::invokeOnRegisteringEnd()
+{
+	if (OnRegisteringEnd)
+	{
+		OnRegisteringEnd();
+	}
+}
 void RegisterCoffeeWidget::setUpGUI()
 {
 	QPalette pal = palette();
@@ -101,6 +108,7 @@ void RegisterCoffeeWidget::on_pbNext_clicked()
 	else
 	{
 		this->close(); // Tutaj powinno byæ coœ w stylu wys³ania wiadomoœci mailem.
+		invokeOnRegisteringEnd();
 	}
 	ui->progressBar->setValue(_paramsDone);
 }

@@ -9,10 +9,8 @@ CoffeeParamSelector::CoffeeParamSelector(QWidget *parent, ICoffeeParam * param) 
 {
     ui->setupUi(this);
 
-    _value = param;
-
-	ui->hsBoolean->setValue(true);
-	ui->hsBoolean->setValue(false); // potrzeba dwa razy aby dobrze ustawiła się wartość QLabel
+    
+	_value = param;
 
     ui->lbTitle->setText(param->GetParamName());
     for (int i = 0; i < ui->vlParams->count(); ++i)
@@ -21,11 +19,14 @@ CoffeeParamSelector::CoffeeParamSelector(QWidget *parent, ICoffeeParam * param) 
         ui->vlParams->itemAt(i)->widget()->setVisible(false);
     }
 
+
+	
 	Update();
 
     // zapamiętaj, że wartość jeszcze nie została zmieniona:
     _valueChanged = false;
 	_value->OnValueChanged = std::bind(&CoffeeParamSelector::onSourceValueChanged, this);
+
 		
 }
 
@@ -46,7 +47,10 @@ void CoffeeParamSelector::onSourceValueChanged(CoffeeParamSelector * selector)
 }
 void CoffeeParamSelector::Update()
 {
-	
+	// Znajduje się to tutaj ze względu na to, że zdarza się wyścig wątków i wywoływana jest wartośc nullptr
+	if (_value == nullptr) return; 
+	if (this == nullptr) return;
+
 	switch (_value->GetParamType())
 	{
 	case ParamType::BOOLEAN:
