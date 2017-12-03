@@ -25,7 +25,7 @@ CoffeeParamSelector::CoffeeParamSelector(QWidget *parent, ICoffeeParam * param) 
 
     // zapamiętaj, że wartość jeszcze nie została zmieniona:
     _valueChanged = false;
-	_value->OnValueChanged = std::bind(&CoffeeParamSelector::onSourceValueChanged, this);
+	_value->OnValueChanged = std::bind(&CoffeeParamSelector::Update, this);
 
 		
 }
@@ -119,6 +119,6 @@ void CoffeeParamSelector::on_dsbTemperature_valueChanged(double arg1)
 
 void CoffeeParamSelector::on_teTime_timeChanged(const QTime &time)
 {
-    _value->SetValue(time);
+    _value->SetValue(time); // ponieważ czas należy podać w sekundach
     _valueChanged = true;
 }

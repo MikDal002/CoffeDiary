@@ -20,7 +20,16 @@ void TimeParam::SetValue(QVariant value)
 {
 	if (value.toTime() == _value.toTime())
 		return;
-	qDebug() << "Nowa wartoœæ: " << value;
-	_value = QTime(value.toInt() / 3600, (value.toInt() / 60) % 60, value.toInt() % 60, 0);
+	qDebug() << "Nowa wartoœæ: " << value << " Stara wartosc: " << _value;
+	if (value.type() == QMetaType::QTime)
+	{
+		_value = value;
+	}
+	else // (value.type() == QMetaType::Int)
+	{
+		_value = QTime(value.toInt() / 3600, (value.toInt() / 60) % 60, value.toInt() % 60, 0);
+	}
+	
+
 	if (OnValueChanged) OnValueChanged();
 }

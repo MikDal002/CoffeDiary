@@ -82,8 +82,6 @@ void MainWindow::DisplayAllCoffeeParams(ICoffeeMethod * method)
 void MainWindow::SendStartBtnsVisibility(bool isVisible)
 {
     ui->lbDescription->setVisible(isVisible);
-    ui->pbStart->setEnabled(false);
-    ui->pbStart->setVisible(isVisible);
     ui->pbSendMail->setEnabled(isVisible);
     ui->pbSendMail->setVisible(isVisible);
 }
@@ -91,17 +89,9 @@ void MainWindow::SendStartBtnsVisibility(bool isVisible)
 void MainWindow::setDescriptionString()
 {
     if (ui->rbPlanNewCoffe->isChecked())
-    {
-        ui->lbDescription->setText("Ustawione parametry będą potem wykorzystane do przeprowadzenia Cię przez proces parzenia po naciśnięciu przycisku \"Rozpocznij\"");
-    }
+        ui->lbDescription->setText("Ustawione parametry będzie można sobie wysłać na maila");
     else if (ui->rbRecordnewCoffe->isChecked())
-    {
         ui->lbDescription->setText("Po naciśnięciu przycisku \"Rozpocznij\" zacznie się pomiar czasu i automatycznie zostaną uzupełnione dane na temat całkowitego czasu parzenia");
-    }
-    else
-    {
-        return;
-    }
 }
 
 void MainWindow::on_pbSendMail_clicked()

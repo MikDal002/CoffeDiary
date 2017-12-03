@@ -22,7 +22,7 @@ RegisterCoffeeWidget::~RegisterCoffeeWidget()
 void RegisterCoffeeWidget::timerTimeout()
 {
 	if (_currentTimeParam == nullptr) return;
-
+	
 	_currentTimeParam->SetValue(_startTime.secsTo(QDateTime::currentDateTime()));
 
 }

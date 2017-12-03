@@ -118,13 +118,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="pbStart">
-          <property name="text">
-           <string>Rozpocznij</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
      </layout>
@@ -137,7 +130,7 @@
      <x>0</x>
      <y>0</y>
      <width>576</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
