@@ -36,7 +36,8 @@ SOURCES += \
     Core/ICoffeeParam.cpp \
     Core/CoffeeDiary.cpp \
     Core/CoffeMethods/PressureMethod.cpp \
-    Core/ICoffeeMethod.cpp
+    Core/ICoffeeMethod.cpp \
+    GUI/RegisterCoffeeWidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,8 +52,10 @@ HEADERS += \
     GUI/CoffeeParamSelector.h \
     Core/ICoffeeParam.h \
     Core/CoffeMethods/PressureMethod.h \
-    Core/CoffeeParams/AllCoffeParams.h
+    Core/CoffeeParams/AllCoffeParams.h \
+    GUI/RegisterCoffeeWidget.h
 
 FORMS += \
         mainwindow.ui \
-    GUI/CoffeeParamSelector.ui
+    GUI/CoffeeParamSelector.ui \
+    GUI/RegisterCoffeeWidget.ui

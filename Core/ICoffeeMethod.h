@@ -8,6 +8,7 @@ public:
     virtual QString GetName() = 0;
     virtual QList<ICoffeeParam *> GetParams() = 0;
     virtual QString GetMailBody();
+	virtual QList<ICoffeeParam *> GetParamsForRecording() = 0;
 protected:
     virtual ~ICoffeeMethod() {}
 };

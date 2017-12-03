@@ -27,7 +27,18 @@ QList<ICoffeeParam *> GravitationMethod::GetParams()
     return retVal;
 }
 
-//QString GravitationMethod::GetMailBody()
-//{
-
-//}
+QList<ICoffeeParam*> GravitationMethod::GetParamsForRecording()
+{
+	QList<ICoffeeParam*> retVal;
+	retVal.append(&_deviceName);
+	retVal.append(&_coffeWeight);
+	retVal.append(&_cleaned);
+	retVal.append(&_waterTemp);
+	retVal.append(&_preinfusionTime);
+	retVal.append(&_totalTime);
+	retVal.append(&_mixed);
+	retVal.append(&_preinfusionWaterAmount);
+	retVal.append(&_waterAmount);
+	retVal.append(&_desc);
+	return  retVal;
+}

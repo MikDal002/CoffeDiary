@@ -1,3 +1,4 @@
+#include <qlist.h>
 #include "PressureMethod.h"
 
 PressureMethod::PressureMethod()
@@ -23,13 +24,17 @@ QList<ICoffeeParam *> PressureMethod::GetParams()
     return retVal;
 }
 
-//QString PressureMethod::GetMailBody()
-//{
-//    QString retVal = "Parzenie metodą ciśnieniową: \r\n";
-//    foreach (auto foo, GetParams())
-//    {
-//        retVal += foo->GetParamName() + ": " + foo->ToString() + "\r\n";
-//    }
-
-//    return retVal;
-//}
+QList<ICoffeeParam*> PressureMethod::GetParamsForRecording()
+{
+	QList<ICoffeeParam*> retVal =
+	{
+		&_deviceName,
+		&_coffeWeight,
+		&_cleaned,
+		&_waterTemp,
+		&_totalTime,
+		&_waterAmount,
+		&_desc
+	};
+	return  retVal;
+}

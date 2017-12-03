@@ -236,7 +236,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string>NIE</string>
           </property>
          </widget>
         </item>
